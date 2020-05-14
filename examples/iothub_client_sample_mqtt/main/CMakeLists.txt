@@ -1,8 +1,4 @@
-set(COMPONENT_SRCS "iothub_client_sample_mqtt.c"
-			"azure_main.c"
-			)
-set(COMPONENT_ADD_INCLUDEDIRS ".")
+idf_component_register(SRCS "azure_main.c" "iothub_client_sample_mqtt.c"
+                       INCLUDE_DIRS ".")
 
-register_component()
-
-component_compile_definitions(SET_TRUSTED_CERT_IN_SAMPLES)
+target_compile_definitions(${COMPONENT_LIB} PRIVATE SET_TRUSTED_CERT_IN_SAMPLES)

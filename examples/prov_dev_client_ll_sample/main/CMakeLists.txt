@@ -1,13 +1,5 @@
-set(COMPONENT_SRCS "azure_main.c"
-				"custom_hsm_x509.c"
-				"prov_dev_client_ll_sample.c"
-				)
-set(COMPONENT_ADD_INCLUDEDIRS ".")
+idf_component_register(SRCS "azure_main.c" "custom_hsm_x509.c" "prov_dev_client_ll_sample.c"
+                       INCLUDE_DIRS "."
+                       EMBED_TXTFILES "certs/leaf_certificate.pem" "certs/leaf_private_key.pem")
 
-set(COMPONENT_EMBED_TXTFILES "certs/leaf_certificate.pem"
-                             "certs/leaf_private_key.pem"
-                             )
-
-register_component()
-
-component_compile_definitions(SET_TRUSTED_CERT_IN_SAMPLES)
+target_compile_definitions(${COMPONENT_LIB} PRIVATE SET_TRUSTED_CERT_IN_SAMPLES)
